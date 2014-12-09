@@ -34,7 +34,7 @@ Annotation/ has annotated part boxes on CUB200-2011 dataset.
 
 ### Usage
   - run.m is the main function to reproduce the results in the paper. 
-  - Part detectors, finetuned models, feature representations are cached in caches/ folder.
+  - Part detectors, finetuned models, feature representations are cached. Download the cache files by running get_cache_files.sh and unzip to caches/ folder.
 
 ###Bug report
 If you have any issues running the codes, please contact Ning Zhang (nzhang@eecs.berkeley.edu).
