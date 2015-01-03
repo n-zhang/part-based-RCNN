@@ -153,6 +153,25 @@ for m = 1 : config.N_methods
 end
 end
 
+function d = load_test_batch_feature(batch_id, impaths, gt_pos)
+    fea_basis = '/u/vis/x1/nzhang/recurPart/img_fea_whole/fea_test_'; % the path where you extract the deep features
+    fea_filename = [fea_basis num2str(batch_id) '.mat'];
+    dd = load(fea_filename);
+    d.im = dd.fea(:,1);
+ 
+    d.boxes = cell2mat(dd.fea(:,2)')';
+    d.feat = cell2mat(dd.fea(:,3)')';
+
+    d.overlap = zeros(numel(d.im),1);
+    ims_bb = unique(d.im);
+    for ii = 1: numel(ims_bb)
+        I = find(strcmp(ims_bb{ii}, d.im));
+        image_id = find(~cellfun('isempty', strfind(impaths,ims_bb{ii})));
+        bbox_box = gt_pos{image_id};
+        d.overlap(I) = boxoverlap(d.boxes(I,:), bbox_box);
+    end
+end
+
 function g = fit_neighbors(idx, X)
 for p = 1:numel(X)
     try
