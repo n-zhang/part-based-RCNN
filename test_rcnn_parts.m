@@ -71,7 +71,6 @@ for i = 1 : num_batches
     zs_ = zs(I_im,:);
     zs_n = exp(zs_) ./ (1 + exp(zs_));
 
-    zp_n = zs_n; //TODO this seems to be wrong
     zp_n = zeros(length(I_im), length(part_models) - 1);
     for p = 1 : length(part_models) - 1
        zp_n(:,p) = exp(zp(I_im, p)) ./ (1 + exp(zp(I_im, p)));
@@ -170,6 +169,20 @@ function d = load_test_batch_feature(batch_id, impaths, gt_pos)
         bbox_box = gt_pos{image_id};
         d.overlap(I) = boxoverlap(d.boxes(I,:), bbox_box);
     end
+end
+
+function [mean_norm, stdd] = feat_stats(dataset)
+   num_batches = 10;
+   boxes_per_batch = 1000;
+   batches = randperm(300,10);
+   ns = [];
+   for i = 1: num_batches
+       d = load_batch_feature(dataset, batches(i));
+       X = d.feat(randperm(size(d.feat,1), min(boxes_per_batch, size(d.feat,1))), :);
+       ns = cat(1, ns, sqrt(sum(X.^2, 2)));
+   end
+   mean_norm = mean(ns);
+stdd = std(ns);
 end
 
 function g = fit_neighbors(idx, X)
