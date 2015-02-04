@@ -12,7 +12,7 @@ addpath(genpath('/u/vis/nzhang/projects/birdmix/kdes_2.0/liblinear-1.5-dense-flo
 
 % Define pretrained model definition files and pretrained model paths.
 model_def = 'caches/cub_finetune_deploy_fc7.prototxt';
-cnn_models{1} = 'caches/CUB_bbox_finetune.caffemodel';
-cnn_models{2} = 'caches/CUB_head_finetune.caffemodel';
-cnn_models{3} = 'caches/CUB_body_finetune.caffemodel';
+cnn_models{1} = 'caches/CUB_bbox_finetune.caffe_model';
+cnn_models{2} = 'caches/CUB_head_finetune.caffe_model';
+cnn_models{3} = 'caches/CUB_body_finetune.caffe_model';
  
