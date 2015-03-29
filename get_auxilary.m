@@ -1,5 +1,5 @@
 %% Get auxilary informations for the geometric constraints
-%% W itten by Ning Zhang
+%% Written by Ning Zhang
 
 function feat_opts = get_auxilary(config)
 
@@ -7,7 +7,8 @@ for p = 1 : config.N_parts - 1
     X{p} = [];
     for k = 1 : length(config.impathtrain)
       if config.train_box{p + 1}(k, 1) ~= -1
-        part_box = config.train_box{1} - [config.train_box{p + 1}(k, 1) config.train_box{p + 1}(k, 2) ...
+        part_box = config.train_box{1}(k, :) - ...
+            [config.train_box{p + 1}(k, 1) config.train_box{p + 1}(k, 2) ...
 	    config.train_box{p + 1}(k, 1) config.train_box{p + 1}(k, 2)];
         w = config.train_box{p + 1}(k, 3) - config.train_box{p + 1}(k, 1);
         h = config.train_box{p + 1}(k, 4) - config.train_box{p + 1}(k, 2);
