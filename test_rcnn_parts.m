@@ -38,9 +38,9 @@ thresh = -inf(1, config.N_methods);
 box_counts = zeros(1, config.N_methods);
 
 % bounding box detector weight and bias
-ws = cat(2, cellfun(@(x) x.w, part_models{1}, 'UniformOutput', false));
+ws = cat(2, cellfun(@(x) x.w, part_models(1), 'UniformOutput', false));
 ws = cat(2, ws{:});
-bs = cat(2, cellfun(@(x) x.b, part_models{1}, 'UniformOutput', false));
+bs = cat(2, cellfun(@(x) x.b, part_models(1), 'UniformOutput', false));
 bs = cat(2, bs{:});
 
 % part detector weight and bias
