@@ -52,7 +52,7 @@ bp = cat(2, bp{:});
 % TODO fix num_batches
 for i = 1 : num_batches
   fprintf('test %d/%d\n', i, num_batches);
-  d = load_test_batch_feature(i, config.impathtest, gt_pos);
+  d = load_test_batch_feature(i, config.impathtest, config.test_box{1});
   feat = xform_feat(d.feat, feat_opts);
   zs = bsxfun(@plus, feat*ws, bs);
   zp = bsxfun(@plus, feat*wp, bp);
